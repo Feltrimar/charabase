@@ -1,15 +1,18 @@
-package feltrimar.models;
+package feltrimar.project.models;
 
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import lombok.Data;
-import org.springframework.data.annotation.Id;
 
-@Data
+@Entity
 public class Region {
 
     @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private long id;
     private String name;
     private String description;
@@ -17,6 +20,16 @@ public class Region {
     private World world;
     @OneToMany
     private List<Character> characters;
+
+    public Region() {}
+
+    public Region(String name, String description, World world,
+            List<Character> characters) {
+        this.name = name;
+        this.description = description;
+        this.world = world;
+        this.characters = characters;
+    }
 
     public long getId() {
         return id;

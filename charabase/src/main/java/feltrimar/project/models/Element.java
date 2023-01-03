@@ -1,4 +1,4 @@
-package feltrimar.models;
+package feltrimar.project.models;
 
 public enum Element {
     FIRE,

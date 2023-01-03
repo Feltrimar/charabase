@@ -1,15 +1,20 @@
-package feltrimar.models;
+package feltrimar.project.models;
 
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import lombok.Data;
-import org.springframework.data.annotation.Id;
+import javax.persistence.Table;
 
-@Data
+@Entity
+@Table(name = "characters")
 public class Character {
 
     @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private long id;
     private String name;
     private String surname;
@@ -41,6 +46,8 @@ public class Character {
         this.side = side;
         this.allegiance = allegiance;
     }
+
+    public Character() {}
 
     public long getId() {
         return id;

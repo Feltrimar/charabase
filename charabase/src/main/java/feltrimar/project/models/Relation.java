@@ -1,14 +1,17 @@
-package feltrimar.models;
+package feltrimar.project.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import lombok.Data;
-import org.springframework.data.annotation.Id;
 
-@Data
+@Entity
 public class Relation {
 
     @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private long id;
     @ManyToOne
     @JoinColumn(name = "charaOrigin_id")
@@ -18,6 +21,13 @@ public class Relation {
     private Character charaDest;
     private String description;
     private int weight;
+
+    public Relation(Character charaOrigin, Character charaDest, String description, int weight) {
+        this.charaOrigin = charaOrigin;
+        this.charaDest = charaDest;
+        this.description = description;
+        this.weight = weight;
+    }
 
     public long getId() {
         return id;

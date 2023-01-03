@@ -1,25 +1,16 @@
-package feltrimar.models;
+package feltrimar.project.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import lombok.Data;
-import org.springframework.data.annotation.Id;
 
-@Data
+@Entity
 public class Power {
 
-    public enum Origin {
-        FRAGMENT,
-        ARK,
-        ETERNA_ARK,
-        LEGISM,
-        STYLE,
-        ANOMALY,
-        DIVINE,
-        OTHER
-
-    }
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String name;
     private String description;
@@ -27,6 +18,14 @@ public class Power {
     private Origin origin;
     @ManyToOne
     private Character user;
+
+    public Power(String name, String description, Element element, Origin origin, Character user) {
+        this.name = name;
+        this.description = description;
+        this.element = element;
+        this.origin = origin;
+        this.user = user;
+    }
 
     public long getId() {
         return id;
@@ -74,5 +73,17 @@ public class Power {
 
     public void setUser(Character user) {
         this.user = user;
+    }
+
+    public enum Origin {
+        FRAGMENT,
+        ARK,
+        ETERNA_ARK,
+        LEGISM,
+        STYLE,
+        ANOMALY,
+        DIVINE,
+        OTHER
+
     }
 }
